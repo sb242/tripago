@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function TripList() {
-  fetch("http://localhost:3000/trips")
-    .then((repsonse) => repsonse.json())
-    .then((json) => console.log(json));
+  const [trips, setTrips] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/trips")
+      .then((repsonse) => repsonse.json())
+      .then((json) => setTrips(json));
+  }, []);
+
+  console.log(trips);
 
   return (
     <div>
